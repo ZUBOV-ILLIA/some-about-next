@@ -1,24 +1,26 @@
 import Heading from "../../components/Heading";
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
 
-// export const getStaticProps = async () => {
+export const getStaticProps = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await response.json();
 
-// };
+  // you can check if will be error
+  // const data = null;
 
-const Contacts = () => {
-  const [contacts, setContacts] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users');
-      const data = await response.json();
-
-      setContacts(data);
+  if (!data) {
+    return {
+      notFound: true,
     }
-    fetchData();
-  }, []);
+  }
 
+  return {
+    props: { contacts: data },
+  }
+};
+
+const Contacts = ({ contacts }) => {
   return (
     <>
       <Head>
