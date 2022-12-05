@@ -1,9 +1,15 @@
 
 
 import Head from "next/head";
+import { FC } from "react";
 import styles from "../styles/Socials.module.scss";
+import { socialsType } from "../types";
 
-const Socials = ({ socials }) => {
+type socialsPropsType = {
+  socials: socialsType[]
+}
+
+const Socials: FC<socialsPropsType> = ({ socials }) => {
 
   if (!socials) {
     return null;
