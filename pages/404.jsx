@@ -12,7 +12,6 @@ const Error = () => {
     }, 3000)
   }, [router]);
 
-  console.log(router)
   return (
     <>
       <Head>
